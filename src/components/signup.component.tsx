@@ -41,7 +41,10 @@ export const SignupComponent: React.FC<ISignupCompononentProps> = (props) => {
             email, password
         }
 
-        await signupRequest(credentials);
+        const created = await signupRequest(credentials);
+        if (created) {
+            props.setView('LOGIN');
+        }
     }
 
     return (

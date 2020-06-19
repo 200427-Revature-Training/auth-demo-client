@@ -4,6 +4,7 @@ import * as authRemote from '../remote/auth.remote';
 
 interface ILoginCompononentProps {
     setView: (view: 'LOGIN' | 'SIGNUP' | 'HOME') => void;
+    getAuthenticatedUser: () => void;
 }
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -28,13 +29,13 @@ const useStyles = makeStyles((theme: Theme) => {
 export const LoginComponent: React.FC<ILoginCompononentProps> = (props) => {
     const classes = useStyles();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('abby@aol.com');
+    const [password, setPassword] = useState('password1');
 
     const login = async () => {
         const credentials = {email, password};
-        await authRemote.loginRequest(credentials);
-        // Handling response
+        const response = await authRemote.loginRequest(credentials);
+        props.getAuthenticatedUser();
     }
 
     return (<div>

@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import * as authRemote from '../remote/auth.remote';
+
+interface IHomeComponentState {
+    email: string;
+} 
 
 /*
     The Home component is the landing page for a logged in user.  When
@@ -6,6 +11,8 @@ import React from 'react';
     message that includes some user details that we could only get if they
     are authenticated.
 */
-export const HomeComponent: React.FC = () => {
-    return (<div>Home</div>)
+export const HomeComponent: React.FC<IHomeComponentState> = (props) => {
+
+
+    return (<div>Welcome {props.email}!</div>)
 }
