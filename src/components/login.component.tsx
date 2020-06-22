@@ -32,6 +32,14 @@ export const LoginComponent: React.FC<ILoginCompononentProps> = (props) => {
     const [email, setEmail] = useState('abby@aol.com');
     const [password, setPassword] = useState('password1');
 
+    const arr = [{character: 'a'}, {character: 'b'}, {character: 'c'}];
+    const [character, setCharacter] = useState('a');
+
+    const updateCharacter = (obj: {character: string}) => {
+        // I could access any property on this object
+        setCharacter(obj.character);
+    }
+
     const login = async () => {
         const credentials = {email, password};
         const response = await authRemote.loginRequest(credentials);
@@ -57,6 +65,16 @@ export const LoginComponent: React.FC<ILoginCompononentProps> = (props) => {
                 className={classes.loginButton} variant="contained" color="primary"
                 onClick={() => login()}    
             >Login</Button>
+
+            <div>
+                <p>{character}</p>
+                { arr.map(i => <Button
+                    className={classes.loginButton} variant="contained" color="primary"
+                    onClick={() => updateCharacter(i)}>
+                        {i}
+                    </Button>
+                )}
+            </div>
         </Paper>
 
     </div>)
